@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+     if error.length > 0
+          <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
+               strong= error
+               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+               </button>
+          </div>
+
+     form(action='' method='POST')
+          div(class='card mt-2')
+               div(class='card-body')
+                    h4(class='card-title text-center')= title
+                    div(class='form-group')
+                         label(for='email') Email Adress
+                         input(type='email' class='form-control' id='email' name='email' required=true autocomplete='off')
+                    div(class='form-group')
+                         label(for='password') Password
+                         input(type='password' class='form-control' id='password' name='password' required=true autocomplete='current-password')
+               div(class='card-footer text-center')
+                    button(type='submit' class='btn btn-primary btn-block mb-2') Log In
+                    a(href='#') Have you forgotten the password?
+                    hr
+                    a(href='/users/register' class='btn btn-info btn-block') Register
+
+               

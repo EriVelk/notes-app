@@ -1,0 +1,17 @@
+extends ../layout
+
+block content
+     div(class='text-center mt-2')
+          h4(class='card-title display-6')= titl
+     div(class='form-group mb-2')
+          a(href='/notes/note' class='btn btn-block btn-success text-center') Add New Note <i class="fa fa-plus-circle" aria-hidden="true"></i>
+     for note in notes
+          div(class='card bg-dark mb-2')
+               div(class='card-body')
+                    h4(class='card-title d-flex')= note.title
+                    h6(class='card-text')= note.description
+               div(class='card-footer')
+                    div(class='text-right')
+                         form(action="/notes/delete/"+note._id method='POST')
+                              button(class='btn btn-danger btn-sm mr-2') Delete <i class="fa fa-trash" aria-hidden="true"></i>
+                              a(href="/notes/edit/"+note._id class='btn btn-info btn-sm') Edit <i class="fa fa-pencil-square" aria-hidden="true"></i>

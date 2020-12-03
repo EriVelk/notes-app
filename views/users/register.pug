@@ -1,0 +1,36 @@
+extends ../layout
+
+block content
+     if errors
+                    for error in errors
+                         <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
+                              strong= error.msg
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                   <span aria-hidden="true">&times;</span>
+                              </button>
+                         </div>
+     form(action='/users/register' method='POST')
+          div(class='card mt-2')
+               div(class='card-body')
+                    h4(class='card-title text-center')= title
+                    div(class='form-group')
+                         label(for='name') Name
+                         input(type='text' class='form-control' id='name' name='name' autocomplete='off' value=(undefined===name ? '':name))
+                    div(class='form-group')
+                         label(for='lastname') Last Name
+                         input(type='text' class='form-control' id='lastname' name='lastname' autocomplete='off' value=(undefined===lastname ? '':lastname))
+                    div(class='form-group')
+                         label(for='date') Age
+                         input(type='date' class='form-control' id='date' name='date' autocomplete='off' value=(undefined===date ? '':date))
+                    div(class='form-group')
+                         label(for='email') Email Adress
+                         input(type='email' class='form-control' id='email' name='email' autocomplete='off' value=(undefined===email ? '':email))
+                    div(class='form-group')
+                         label(for='password') Password
+                         input(type='password' class='form-control' id='password' name='password'  autocomplete='new-password')
+                    div(class='form-group')
+                         label(for='conpassword') Confirm Password
+                         input(type='password' class='form-control' id='conpassword' name='conpassword'  autocomplete='new-password')
+               div(class='card-footer text-center')
+                    button(class='btn btn-info btn-block mb-2') Register
+               
