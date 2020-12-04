@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 //Set up default mongoose connection
-const dev_db_url = 'mongodb://u0vcpbuwaksc7xkocr8z:SlHMX1XtcltNBniEtKUc@bfphhmeuraswone-mongodb.services.clever-cloud.com:27017/bfphhmeuraswone';
+const dev_db_url = 'mongodb+srv://veliz:nZuWVxiqBkDBKJbd@cluster0.pf2tr.mongodb.net/db-local?retryWrites=true&w=majority';
 
 const MONGODB = process.env.MONGODB_URI || dev_db_url;
 
