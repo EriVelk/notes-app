@@ -3,6 +3,10 @@ const mongoose = require('mongoose');
 
 //Set up default mongoose connection
 const dev_db_url = 'process.env.DB' 
+<<<<<<< HEAD
+=======
+      
+>>>>>>> c9d8b663c1765f0136670dc49959167a55ccf184
 const MONGODB = process.env.MONGODB_URI || dev_db_url;
 
 mongoose.connect(MONGODB, {
