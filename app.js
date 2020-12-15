@@ -6,15 +6,19 @@ const flash = require('connect-flash');
 const hash = require('pbkdf2-password');
 const path = require('path');
 const passport = require('passport');
-require('./db');
+const { format } = require('timeago.js');
+
 
 const app = express();
 require('./config/passport');
+require('./db');
 
 //Importing Routes
 const indexRoutes = require('./routes/indexRouter');
 const usersRoutes = require('./routes/usersRouter');
 const notesRoutes = require('./routes/notesRouter');
+const tasksRoutes = require('./routes/tasksRouter');
+const callendarRoutes = require('./routes/callendarRouter');
 
 //Config
 app.set('port', process.env.PORT || 3000);
@@ -24,6 +28,7 @@ app.set('views', path.join(__dirname, 'views'));
 //Middleware
 app.use(helmet());
 app.use(morgan('dev'));
+app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(session({
     resave: true, // it does not save the session if it is not modified.
@@ -41,12 +46,20 @@ app.use((req, res, next) => {
     res.locals.error = req.flash('error');
     res.locals.user = req.user || null;
     next();
-})
+});
+
+app.use((req, res, next) => {
+    app.locals.format = format;
+    next();
+});
+
 
 //Routes
 app.use('/', indexRoutes);
 app.use('/', usersRoutes);
 app.use('/', notesRoutes);
+app.use('/', tasksRoutes);
+app.use('/', callendarRoutes);
 
 //Static files
 app.use(express.static(path.join(__dirname, 'public')));

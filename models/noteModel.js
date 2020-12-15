@@ -12,9 +12,12 @@ const NoteSchema = new Schema({
     user: {
         type: String,
         required: true
+    },
+    created_at: {
+        type: Date,
+        default: Date.now()
     }
-}, {
-    timestamps: true
+
 });
 
 module.exports = model('Note', NoteSchema);

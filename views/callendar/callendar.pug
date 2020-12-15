@@ -1,0 +1,72 @@
+extends ../layout
+
+block content
+     div(class='text-center mt-2')
+          h4(class='card-title display-5')= title
+     <!DOCTYPE html>
+     <html lang="en">
+
+     <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Calendario</title>
+     link(rel="stylesheet" href="/stylesheets/calendar.css")
+     </head>
+
+     <body>
+     <div class="container_calendar mt-2">
+          <div class="header_calendar">
+               <h1 id="text_day">00</h1>
+               <h5 id="text_month">Null</h5>
+          </div>
+          <div class="body_calendar">
+               <div class="container_details">
+               </div>
+               <div class="container_change_month">
+                    <button id="last_month"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
+                    <div>
+                         <span id="text_month_02">Null</span>
+                         <span id="text_year">0000</span>
+                    </div>
+                    <button id="next_month"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+               </div>
+               <div class="container_weedays">
+                    <span class="week_days_item">DOM</span>
+                    <span class="week_days_item">LUN</span>
+                    <span class="week_days_item">MAR</span>
+                    <span class="week_days_item">MÍE</span>
+                    <span class="week_days_item">JUE</span>
+                    <span class="week_days_item">VIE</span>
+                    <span class="week_days_item">SÁB</span>
+               </div>
+               <div class="container_days">
+                    <span class="week_days_item item_day"></span>
+               </div>
+          </div>
+
+     </div>
+
+     div(class='form-group mt-4 text-center')
+          h4(class='dsiplay-4')= taskTitle
+               for task in tasks
+                    div(class='card mb-2')
+                         div(class='card-body')
+                              div(class='row')
+                                   div(class='col')
+                                        h5(class='card-title')= task.date_format
+                              div(class='row')
+                                   div(class='col')
+                                        h6(class='card-text')= task.description
+                                   
+                         if(task.status == true)
+                              div(class='card-footer bg-success')
+                                   <i class="fa fa-check-square" aria-hidden="true"></i>
+                         else
+                              div(class='card-footer bg-danger')
+                                   <i class="fa fa-window-close" aria-hidden="true"></i>
+
+     script(type="text/javascript" src="/javascripts/jquery.js")
+     script(type="text/javascript" src="/javascripts/calendar.js")
+     </body>
+
+     </html>

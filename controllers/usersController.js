@@ -15,15 +15,22 @@ userController.registerUser = [
     //Validate and sanitize fields.
     body('name', 'Name must not be empty.').trim().isLength({ min: 3 }).escape(),
     body('lastname', 'Last Name must not be empty.').trim().isLength({ min: 3 }).escape(),
-    body('date').trim().escape(),
+    body('date', 'Date must not be empty.').isLength({ min: 1 }).trim().escape(),
     check('email').isEmail().normalizeEmail().trim().withMessage('Invalid email').custom(async(email) => {
         const emailUser = await User.findOne({ email: email });
         if (emailUser) {
             throw new Error('Email al ready in use.');
         }
     }),
-    body('password').isLength({ min: 8 }).withMessage('The Password must be at least 8 chars long').matches(/\d/).withMessage('The Password must contain a number.'),
-    //body('conpassword').isLength({ min: 8 }).withMessage('Confirm password is required.').matches('password').withMessage('Passwords do not match.').trim().escape(),
+    body('password').isLength({ min: 8 }).withMessage('The Password must be at least 8 chars long').matches(/\d/).withMessage('The Password must contain a number.').trim(),
+    check('conpassword').trim().custom(async(conpassword, { req }) => {
+        const password = req.body.password;
+        // If password and confirm password not same 
+        // don't allow to sign up and throw error
+        if (password != conpassword) {
+            throw new Error('Passwords do not match');
+        }
+    }),
 
     async(req, res, next) => {
 
@@ -67,13 +74,13 @@ userController.registerUser = [
 
 userController.renderLogIn = (req, res) => {
     res.render('users/login', {
-        title: 'Log In'
+        title: 'Login'
     });
 }
 
 userController.logIn = passport.authenticate('local', {
     failureRedirect: 'login',
-    successRedirect: '/notes',
+    successRedirect: '/',
     failureFlash: true
 });
 

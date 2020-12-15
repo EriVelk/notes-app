@@ -17,7 +17,7 @@ block content
                     h4(class='card-title text-center')= title
                     div(class='form-group')
                          label(for='title') Title
-                         input(id='title' type='text' name='title' class='form-control' placeholder='Title' autofocus value=(undefined===note ? '' : note.title))
+                         input(id='title' type='text' name='title' class='form-control' placeholder='Title' autocomplete='off' autofocus value=(undefined===note ? '' : note.title))
                     div(class='form-group')
                          label(for='description') Description
                          if undefined===note

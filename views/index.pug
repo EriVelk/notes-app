@@ -13,14 +13,18 @@ block content
      div(class='jumbotron mt-2')
           div(class='card-body')
                h4(class='card-title display-6')= title
-               p(class='card-subtitle mb-2') Welcome to #[em Auth], a very basic Express aplication.
+               p(class='card-subtitle mb-2') Welcome to #[em Diary], a very basic Express aplication.
 
                ul(class='list-group list-group-item-info')
                     if user == null
                          li(class='list-group-item')  
-                              a(href='/users/login' class='btn btn-primary btn-block') Log In
+                              a(href='/users/login' class='btn btn-primary btn-block') Login
                          li(class='list-group-item')
                               a( href = '/users/register' class='btn btn-info btn-block') Register
                     else
                          li(class='list-group-item')
-                              a( href = '/notes' class='btn btn-warning btn-block') Notes
+                              a( href = '/notes' class='btn btn-warning btn-block') <i class="fa fa-sticky-note fa-3x" aria-hidden="true"></i>
+                         li(class='list-group-item')
+                              a( href = '/tasks' class='btn btn-danger btn-block') <i class="fa fa-tasks fa-3x" aria-hidden="true"></i>
+                         li(class='list-group-item')
+                              a(href='/callendar' class='btn btn-info btn-block') <i class="fa fa-calendar fa-3x" aria-hidden="true"></i>

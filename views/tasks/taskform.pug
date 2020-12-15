@@ -1,0 +1,26 @@
+extends ../layout
+
+block content
+     if errors
+          for error in errors
+               <div class="mt-2 alert alert-warning alert-dismissible fade show" role="alert">
+                    strong= error.msg
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                    </button>
+               </div>
+     form(action='' method='POST')
+          div(class='card mt-2 mb-2')
+               div(class='card-body')
+                    h4(calss='card-title text-center')= title
+                    div(class='form-group')
+                         label(for='date') Date
+                         input(type='date' class='form-control' name='date' autocomplete='off' value=(undefined===task ? '' : task.date))
+                    div(class='form-group')
+                         label(for='description') Description
+                         if undefined===task
+                              textarea(name="description", cols="10", rows="3" class='form-control')
+                         else
+                              textarea(name="description", cols="10", rows="3" class='form-control')= task.description
+                    div(class='text-center')
+                         button(class='btn btn-success') Save <i class="fa fa-floppy-o" aria-hidden="true"></i>

@@ -69,7 +69,7 @@ noteController.editNote = [
     body('description', 'Description not be empty.').trim().isLength({ min: 1 }).escape(),
 
     //Process request after validation and sanitization.
-    (req, res, next) => {
+    async(req, res, next) => {
 
         //Extract the validation errors form a request.
         const errors = validationResult(req);
@@ -89,12 +89,12 @@ noteController.editNote = [
                 errors: errors.array()
             });
         } else {
-            Note.findByIdAndUpdate(req.params.id, note, {}, function(err) {
+            await Note.findByIdAndUpdate(req.params.id, note, {}, function(err) {
                 if (err) {
                     return next(err);
                 }
                 //Succesfull - redirect all notes.
-                res.redirect('/notes/allnotes');
+                res.redirect('/notes');
             })
         }
     }
