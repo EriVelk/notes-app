@@ -2,8 +2,8 @@
 const mongoose = require('mongoose');
 
 //Set up default mongoose connection
-const dev_db_url = 'mongodb+srv://veliz:nZuWVxiqBkDBKJbd@cluster0.pf2tr.mongodb.net/db-local?retryWrites=true&w=majority';
-
+const dev_db_url = 'process.env.DB' 
+      
 const MONGODB = process.env.MONGODB_URI || dev_db_url;
 
 mongoose.connect(MONGODB, {
