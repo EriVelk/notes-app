@@ -6,7 +6,8 @@ Pasos:
 
 1.- Instalar NodeJS y MongoDB en tu maquina local
 
-2.- Ejecutar npm install
+2.- Clonar el repositorio, con un editor de textos recomendado Visual Studio Code
+    -Ejecutar npm install
 
 3.- Ejecutar npm run dev
 
